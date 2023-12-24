@@ -57,11 +57,11 @@ For the stationary parameters it is assumed that they are static and have been i
 
 ### Trending Parameters
 For the trending parameters, it is assumed that they are a function of T, the global average temperature relative to 1900, and the parameters has been inferred with Bayesian hierarchical models.
-- Occurence-rate<sub>f</sub> ~ Poisson($\exp(\alpha + \beta T)$) for every country
-- Occurence-rate<sub>s</sub> ~ Poisson($\exp(\alpha + \beta T)$) for every country
-- Magnitude<sub>fo</sub> ~ Weibull($\kappa, \exp(\lambda \times T)$) for every region
+- Occurence-rate<sub>f</sub> ~ Poisson($\exp ( \alpha + \beta T ) $) for every country
+- Occurence-rate<sub>s</sub> ~ Poisson($\exp ( \alpha + \beta T ) $) for every country
+- Magnitude<sub>fo</sub> ~ Weibull($\kappa, \exp ( \lambda T ) $) for every region
 - Magnitude<sub>fn</sub> ~ Weibull($\kappa, \exp ( \lambda T ) $) for every region
-- Duration<sub>so</sub> ~ Weibull($\kappa, \lambda  T$) for every region
+- Duration<sub>so</sub> ~ Weibull($\kappa, \exp ( \lambda T ) $) for every region
 
 ## Disaster Displacement Magnitude
 A linear regression model has been trained on all disasters in EMDAT that causes displacement, to predict the percentage of the population that a disaster displaces $0 \leq X \leq 1$, given that we know it will cause displacement. The model is given *Disaster Magnitude*, *Duration* and *Population Density* as predictor variables.
@@ -83,10 +83,10 @@ Putting everything together in our simulation model, as can be found in **model.
         5. For every flood:
             1. Draw outlier status ~ Bernoulli($\pi_f$)
             2. If outlier = 1:
-                1. Draw magnitude ~ Weibull($\kappa, \exp(\lambda * T)$)
+                1. Draw magnitude ~ Weibull($\kappa, \exp ( \lambda * T ) $)
                 2. Draw duration ~ Weibull($\kappa, \lambda, \theta$)
             3. If outlier = 0:
-                1. Draw magnitude ~ Weibull($\kappa, \exp(\lambda * T)$)
+                1. Draw magnitude ~ Weibull($\kappa, \exp ( \lambda * T ) $)
                 2. Draw duration  ~ Gamma($\alpha, \beta, \theta$)
             4. Calculate factors = f(wri, duration, magnitude)
             5. Predict clusters = f(factors)
@@ -102,7 +102,7 @@ Putting everything together in our simulation model, as can be found in **model.
         9. For every storm:
             1. Draw outlier status ~ Bernoulli($\pi_s$)
             2. If outlier = 1:
-                1. Draw duration ~ Weibull($\kappa, \exp(\lambda * T)$)
+                1. Draw duration ~ Weibull($\kappa, \exp ( \lambda * T ) $)
             3. If outlier = 0:
                 1. Draw duration  ~ Gamma($\alpha, \beta, \theta$)
             4. Draw magnitude ~N($\mu, \sigma$)
