@@ -59,7 +59,7 @@ For the stationary parameters it is assumed that they are static and have been i
 For the trending parameters, it is assumed that they are a function of T, the global average temperature relative to 1900, and the parameters has been inferred with Bayesian hierarchical models.
 - Occurence-rate<sub>f</sub> ~ Poisson($\exp(\alpha + \beta * T)$) for every country
 - Occurence-rate<sub>s</sub> ~ Poisson($\exp(\alpha + \beta * T)$) for every country
-- Magnitude<sub>fo</sub> ~ Weibull($\kappa, \exp \left( \lambda * T \right)$) for every region
+- Magnitude<sub>fo</sub> ~ Weibull($\kappa, \text{exp}(\lambda * T)$) for every region
 - Magnitude<sub>fn</sub> ~ Weibull($\kappa, \exp(\lambda * T)$) for every region
 - Duration<sub>so</sub> ~ Weibull($\kappa, \exp(\lambda * T)$) for every region
 
